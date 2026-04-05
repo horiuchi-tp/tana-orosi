@@ -1,4 +1,5 @@
-const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyo1t1sX5GyrCx22yfJOFNUJv6CesapJ7xGoFk947IDFF01glOPJLU5S3X3bizQE3tYBw/exec";
+// GASの新しいデプロイURLに書き換えてください（末尾の ?token=... は残すこと）
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyo1t1sX5GyrCx22yfJOFNUJv6CesapJ7xGoFk947IDFF01glOPJLU5S3X3bizQE3tYBw/exec?token=E9wK2mP7vL4qW8jR5bN1cF3zT6hD0yG4";
 
 let html5QrCode;
 let isScanning = false;
