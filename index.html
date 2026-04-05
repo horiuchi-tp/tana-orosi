@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>棚卸QR読み込みツール</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 棚卸ツール</h1>
+        
+        <div class="input-area">
+            <label for="modeSelect">作業モード:</label>
+            <select id="modeSelect" style="width: 100%; padding: 15px; font-size: 1.2rem; background: #333; color: #fff; border: 1px solid #555; border-radius: 8px;">
+                <option value="full">全体棚卸（照合・あぶり出し）</option>
+                <option value="area_only">列変更（エリア更新のみ）</option>
+            </select>
+        </div>
+
+        <div class="input-area">
+            <label for="areaInput">エリア番号（任意）:</label>
+            <input type="number" id="areaInput" placeholder="例: 1, 2, 3..." pattern="\d*">
+        </div>
+
+        <div class="status-area">
+            <div class="status-label">現在のスキャン数</div>
+            <div class="status-count"><strong id="dataCount">0</strong> 件</div>
+        </div>
+        
+        <div id="systemMessage" class="system-message"></div>
+    </div>
+
+    <div class="bottom-controller">
+        <button id="btnStart" class="btn-start">QR読み込み開始</button>
+        <button id="btnSend" class="btn-send">スプレッドシートへ送信</button>
+    </div>
+
+    <div id="cameraModal" class="modal-overlay">
+        <div class="modal-header">
+            <div id="currentAreaDisplay">エリア: 未設定</div>
+        </div>
+        <div id="reader"></div>
+        <div class="modal-controls">
+            <button id="btnStop" class="btn-close">読み込み完了（閉じる）</button>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+</body>
+</html>
