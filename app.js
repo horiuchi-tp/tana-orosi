@@ -1,5 +1,6 @@
 // GASの新しいデプロイURLに書き換えてください（末尾の ?token=... は残すこと）
 const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyo1t1sX5GyrCx22yfJOFNUJv6CesapJ7xGoFk947IDFF01glOPJLU5S3X3bizQE3tYBw/exec?token=E9wK2mP7vL4qW8jR5bN1cF3zT6hD0yG4";
+const FRONT_TOKEN = "E9wK2mP7vL4qW8jR5bN1cF3zT6hD0yG4"; // 画面アクセス用のトークン
 
 let html5QrCode;
 let isScanning = false;
@@ -8,6 +9,14 @@ let toastTimeout;
 let wakeLock = null; 
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 【追加】画面を開く際のURLトークンチェック（入り口のブロック）
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('token') !== FRONT_TOKEN) {
+        // トークンが不一致の場合は画面をエラー表示で塗りつぶし、処理を停止する
+        document.body.innerHTML = "<div style='padding: 50px 20px; color: #ff5252; font-weight: bold; font-size: 1.2rem; text-align: center;'>エラー: 認証トークンがありません。<br>正しいURLからアクセスしてください。</div>";
+        return; 
+    }
+
     loadFromLocalStorage();
     updateDataCount();
     setupEventListeners();
